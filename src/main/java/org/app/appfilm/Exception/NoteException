@@ -1,0 +1,5 @@
+- Config Exception(rõ nghĩa -> dễ đọc dễ debug) không muốn trả về exception hệ thống.
+Ví dụ: throw new RuntimeException(....);(đọc không hiểu cụ thể lỗi là gì)
+throw new UserNotFoundException(....);(đọc hiểu ngay)
+
+- exception để xử lý qua RestControllerAdvice thì phải là e dạng RuntimeException(throw)

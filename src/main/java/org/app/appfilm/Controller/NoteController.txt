@@ -1,0 +1,100 @@
+split file tung tang theo huong doi tuong
+
+Annotation:
+@RequestParam(key=value):
+- Chỉ định name param request để lấy đối số -> tham số
+ví dụ: @RequestParam(name = "userName") String userName
+- Optional request param
+ví dụ: @RequestParam(name = "userName", required = false) String userName
+hoặc: @RequestParam(name = "userName") Optional<String> userName
+- Default value
+Ví du: @RequestParam(defaultValue = "Hieudz", name = "userName") String userName
+
+- Mapping All Param(nhiều param >= 3)
+ví dụ: @RequestParam Map<String, Object> mapParams
+
+- Mapping a Multi-Value Parameter
+ví dụ: @RequestParam(name = "age")
+
+
+Best Practice API Design:
+- transfer data nên ở dạng json
+ví dụ:
+{
+  "name": "Hieu",
+  "age": 18
+}
+[
+{
+  "id": 1,
+  "name: "Hieu"
+},
+{
+  "id": 2,
+  "name": "dz"
+}
+]
+
+- sử dụng danh từ thay vì động từ trong endpoint: Do action = HTTP methods
+ví dụ: GET /getUsers(không nên) mà thay vào đó là GET /users
+
+- Sử dụng logical nesting trên endpoint: lấy data có quan hệ với nhau
+ví dụ: Lấy tất cả comment của 1 user
+GET /users/{id}/comments
+Tuy nhiên sử dụng tk này ở mức level 1 level 2 đề tránh url quá dài
+ví dụ: lấy user đã comment ở trong 1 bộ phim
+GET /movies/{id}/comments/{commentId}/username(quá dài)
+
+- Sử dụng tham số
+- Tham số truy vấn(request param): để lọc, phân trang, sắp xếp dữ liệu: ...?k1=v1&k2=v2
+ví dụ: lấy user có quốc tịch việt nam và có tuổi = 20 và phân trang 1
+GET /api/v1/users?country=VietNam&age=20&page=1
+tuy nhiên khi truy vấn phức tạp với nhiều điều kiện lọc -> url quá dài + method quá nhiều tham số(>=3)
+C1: muốn bảo mật thì nên dùng POST Ví dụ: POST /api/v1/users
+C2: Dùng Map để url param map -> Map object(LinkedHashMap)
+
+
+- xử lý lỗi và trả về error code chuẩn + lỗi rõ ràng(config lỗi chứ ko phải lỗi hệ thống)
+
+- version on endpoint
+ví dụ: version 1 của api: /api/v1
+
+Param của url có multiple value được không?
+- Có. Ví dụ: GET /api/v1/users?age=10,11(OK) khi đó @RequestParam List<...> listAge
+
+
+Tại sao GET request không nên chứa body
+- Tiêu chuẩn RFC 7231, phương thức GET quy định ko yêu cầu gửi dữ liệu trong phần body
+- Không phù hợp với nguyên tắc single responsible
+- Nhiều máy chủ và proxy không xử lý tốt dữ liệu trong phần body của GET request
+- Vấn đề về caching do có thể phần body của get request ko được cache
+
+-> chỉ sử dụng GET truy vấn dữ liệu thông qua url hoặc qua header, nếu muốn có body thì sử dụng POST
+Tất cả các thông tin thêm sửa xóa đều qua map -> UserDTO
+
+Với url thừa 1 dấu / cũng ko được
+
+Nguyên tắc single responsible(làm 1 việc thôi) -> test
+
+Khi gán các value Param thì nên gán với Object không được gán với primitive data type để tránh hiện tương null
+  @GetMapping(path = "")
+  public ResponseEntity<List<UserDTO>> getAllPaging(@RequestParam(value = "page", required = false) int page)
+- tk spring boot kỳ vọng url có param key page để nó ánh xạ vào tham số page tuy nhiên nếu param url
+không có page(mặc dù required = false) để dễ nhớ primitive data type ~ required = true thì nó vẫn bị lôi
+
+- path không được trùng nhau nếu không làm rối tk spring boot
+
+- Tại sao các method trong Controller không phải là static method?
+
+- Autowired field vs Autowired constructor
+
+- final field vs non final field
+ví dụ: private final IUserService iUserService vs private IUserService iUserService;
+
+flow: user gửi http request -> server(web container) -> chuyển request dispatcherservlet -> mapping controller dựa vào thông ...
+Cơ chế autowire: Spring boot sẽ quét các lớp đánh dấu annotation có @Component -> tạo bean(singleton) -> inject bean vào
+Autowire interface: vi tk interface co the co nhieu implement -> autowire voi tk nao
+solution: @Qualifier
+TEST
+- Khi test đặt endpoint ở các method
+

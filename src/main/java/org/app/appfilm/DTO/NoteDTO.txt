@@ -1,0 +1,21 @@
+DTO is Java Bean:
+- Default constructor
+- private att
+- Getter, Setter for att
+
+
+Format Error:
+- int statusCode
+- String path
+- String errMsg
+- String errDetail
+
+
+number of att >= 4 use Builder design pattern
+
+Builder Pattern:
+- Client
+- Director
+- Builder(Interface)
+- BuilderImp
+- Product
