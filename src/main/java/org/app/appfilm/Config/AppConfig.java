@@ -7,4 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "org.app.appfilm")
 public class AppConfig {
 
+  public static void main(String[] args) {
+
+  }
 }
