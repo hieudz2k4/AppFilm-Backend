@@ -1,8 +1,9 @@
 package org.app.appfilm.DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MovieDTO {
+public class MovieDTO implements Serializable {
   private String movieEngName;
   private String movieVNName;
   private int duration;

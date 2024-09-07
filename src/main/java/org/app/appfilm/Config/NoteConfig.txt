@@ -1,0 +1,2 @@
+- HibernateConfig: Tạo SessionFactory từ Configuration, do SessionFactory nặng(heavy object) -> singleton
+sử dụng static block initialization

@@ -1,0 +1,2 @@
+.SqlExceptionHelper   : Unknown column 'ue1_0.user_id' in 'field list'
+Lỗi này do Hibernate chuyển camelCase -> camel_case -> chỉnh lại Entity là ok

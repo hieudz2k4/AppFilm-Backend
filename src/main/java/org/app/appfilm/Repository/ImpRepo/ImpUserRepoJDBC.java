@@ -1,25 +1,17 @@
+/**
 package org.app.appfilm.Repository.ImpRepo;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
-import org.app.appfilm.Config.HibernateConfig;
-import org.app.appfilm.Constant.MySQLConstant;
-import org.app.appfilm.DTO.ResponseDTO;
 import org.app.appfilm.Repository.Entity.UserEntity;
 import org.app.appfilm.Repository.IRepo.IUserRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component(value = "impUserRepo")
-public class ImpUserRepo implements IUserRepository {
+@Component(value = "impUserRepoJDBC")
+public class ImpUserRepoJDBC implements IUserRepository {
   private final String url = "jdbc:mysql://localhost:3306/AppFilm";
   private final String userName = "root";
   private final String password = "Khongco2004@";
@@ -36,6 +28,11 @@ public class ImpUserRepo implements IUserRepository {
       userEntity.setUserId(id);
       userEntity.setUserName(res.getString("userName"));
       userEntity.setPassword(res.getString("password"));
+      userEntity.setEmailAddress(res.getString("emailAddress"));
+      userEntity.setUrlAvatarImage(res.getString("urlAvatarImage"));
+      userEntity.setDateOfBirth(res.getDate("dateOfBirth"));
+      userEntity.setCountry(res.getString("country"));
+
     }
     return userEntity;
   }
@@ -44,3 +41,4 @@ public class ImpUserRepo implements IUserRepository {
 
   }
 }
+*/
