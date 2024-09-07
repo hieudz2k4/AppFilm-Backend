@@ -1,0 +1,30 @@
+#Spring
+spring:
+  application: #app
+    name: App_Film_Backend
+
+  datasource: #database
+    url: jdbc:mysql://localhost:3306/AppFilm
+    username: root
+    password: Khongco2004@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa: #jpa
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: none
+    show_sql: true
+
+#Server
+server:
+  port: 8081
+
+#Log
+logging:
+  level:
+    org:
+      springframework:
+        web: info
+
+#Hibernate

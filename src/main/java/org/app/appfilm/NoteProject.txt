@@ -1,1 +1,3 @@
 - Debug trước khi chạy -> hiểu rõ về flow
+
+- Sort bởi nhiều trường ví dụ: sort age -> age trùng -> sort userName

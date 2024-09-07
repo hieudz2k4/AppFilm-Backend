@@ -1,0 +1,20 @@
+Lớp Entity tạo ra Persistent Object:
+- DefaultConstructor
+- Getter, Setter
+
+Có 3 trạng thái:
+- Transient: đối tượng Entity tạo ra chưa liên kết với csdl
+- Persistent: đối tượng Entity liên kết với csdl
+-
+
+Khi liên quan đến việc ghi xuống(update, delete, create) csdl -> xảy ra vấn đề liên quan async
+-> dùng Transmission
+- Serializable có tác dụng đồng bộ dữ liệu khi đưa dữ liệu qua internet
+
+Auditing:
+- là hành động dám sát theo dõi hành vi trên database ví du: ai là người cập nhật dữ liệu, chỉnh sửa khi nào,... -> kiểm soát, quản trị những hành vi trên databse
+tuy nhiên ứng dụng nhỏ:
+- created_by
+- created_at
+- update_by
+- update_at

@@ -1,21 +1,24 @@
 package org.app.appfilm.Service.IService;
 
-import java.sql.SQLException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import org.app.appfilm.DTO.ResponseDTO;
-import org.app.appfilm.DTO.UserDTO;
-import org.springframework.lang.Nullable;
+import org.app.appfilm.DTO.UserDTO.Req.UserLoginDTO;
+import org.app.appfilm.DTO.UserDTO.Req.UserRegisterDTO;
+import org.app.appfilm.DTO.UserDTO.Req.UserUpdateDTO;
+import org.app.appfilm.DTO.UserDTO.Res.UserResDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface IUserService {
-  List<UserDTO> getAllUser(@Nullable Integer page);
-  UserDTO getUserById(int id);
-  List<UserDTO> filterByParam(Map<String, Object> params);
-  ResponseDTO login(UserDTO userDTO);
-  ResponseDTO register(UserDTO userDTO);
-  List<UserDTO> getAllUserByPost(UserDTO userDTO, int page, String sortType);
-  ResponseDTO updateUser(UserDTO userDTO);
-  ResponseDTO deleteUser(int id);
+  List<UserResDTO> getAllUserPagingAndSorting(Integer pageNo, Integer pageSize, String sortBy);
+  UserResDTO getUserById(Long id);
+  List<UserResDTO> filterByParam(Map<String, Object> params);
+  List<UserResDTO> getAllUserByPost(UserResDTO userDTO, int pageNo, int pageSize, String sortType);
+
+  ResponseDTO login(UserLoginDTO userLoginDTO);
+  ResponseDTO register(UserRegisterDTO userRegisterDTO);
+  ResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO, HttpServletRequest request);
+  ResponseDTO deleteUser(Long id, HttpServletRequest request);
 }

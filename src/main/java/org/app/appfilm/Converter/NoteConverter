@@ -1,0 +1,4 @@
+Converter: Chuyển đổi DTO -> Entity, Entity -> DTO bằng set, get
+
+Dùng MapStruct
+- @Mapper có thuộc tính @componentModel = "spring" -> để Spring DI

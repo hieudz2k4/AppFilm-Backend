@@ -19,3 +19,5 @@ Builder Pattern:
 - Builder(Interface)
 - BuilderImp
 - Product
+
+- @Builder with inheritance????? -> đặt @Builder ở constructor allargument

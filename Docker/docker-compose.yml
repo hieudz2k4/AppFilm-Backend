@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api_service:
+    container_name: app_film_backend_container
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - app_film_network
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: curl http:localhost:8081/api/v1/users/1
+      interval: 10s
+      timeout: 3s
+      retries: 2
+networks:
+   app_film_network:
+      external: true
+
+
+
+
